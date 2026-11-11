@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-primary-soft text-primary-ink;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+  .label {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-faint;
+  }
+  .heading {
+    @apply font-display font-semibold uppercase tracking-[0.01em] text-ink;
+  }
+  .stat {
+    @apply font-display font-semibold tabular-nums leading-none tracking-tight text-ink;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white shadow-green hover:bg-primary-hover active:scale-[0.98] disabled:shadow-none;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-surface text-ink hover:border-strong hover:bg-sunk;
+  }
+  .btn-quiet {
+    @apply btn text-muted hover:bg-sunk hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn border border-hot/30 bg-hot-soft text-hot-ink hover:bg-hot hover:text-white;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[0.95rem] text-ink placeholder:text-faint/80 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1.5 text-xs leading-relaxed text-faint;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-0.5 text-xs font-medium text-muted;
+  }
+  .skeleton {
+    @apply rounded-md bg-gradient-to-r from-sunk via-line to-sunk bg-[length:200%_100%] animate-shimmer;
+  }
+  .lane-lines {
+    background-image: repeating-linear-gradient(90deg, transparent 0 46px, rgba(22, 163, 74, 0.08) 46px 48px);
+  }
+}
+
+/* Effort slider: a plain range input with a heat gradient track. */
+input[type='range'].effort {
+  @apply h-2 w-full cursor-pointer appearance-none rounded-full;
+  background: linear-gradient(90deg, #3b82f6, #16a34a 35%, #d97706 70%, #dc2626);
+}
+input[type='range'].effort::-webkit-slider-thumb {
+  @apply h-6 w-6 appearance-none rounded-full border-4 border-white bg-ink shadow-lift;
+}
+input[type='range'].effort::-moz-range-thumb {
+  @apply h-5 w-5 rounded-full border-4 border-white bg-ink shadow-lift;
+}
+
+.mapboxgl-ctrl-attrib {
+  font-size: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
